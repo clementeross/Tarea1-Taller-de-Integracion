@@ -1,0 +1,4 @@
+__pycache__
+main/migrations/__pycache__
+tarea1/.env
+.DS_Store

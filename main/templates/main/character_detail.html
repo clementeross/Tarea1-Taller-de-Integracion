@@ -25,7 +25,6 @@
                 </ul>
                 <li>Estado: {{ status }}</li>
                 <li>Sobrenombre: {{ nickname }}</li>
-                <li>Series en las que aparece: {{ category }}</li>
                 {% if appearance %}
                     <li>Apariciones en la serie Breaking Bad:</li>
                     <ul>
@@ -47,12 +46,16 @@
                 {% else %}
                     <li>Apariciones en la serie Better Call Saul: No tiene</li>
                 {% endif %}
-                <li>Citas de este personaje:</li>
-                <ul>
-                    {% for quote in quotes%}
-                    <li>{{ quote }}</li>
-                    {% endfor %}
-                </ul>
+                {% if quotes %}
+                    <li>Citas de este personaje:</li>
+                    <ul>
+                        {% for quote in quotes%}
+                        <li>{{ quote }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <li>Citas de este personaje: No tiene</li>
+                {% endif %}
             </ul>
         {% else %}
             <h3>Error! La API no tiene información acerca de lo que pediste</h3>
