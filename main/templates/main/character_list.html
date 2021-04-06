@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% if characters_list %}
+            <form align="right" action="/search" method="post">
+                {% csrf_token %}
+                <label>Buscador de Personajes:</label>
+                <input type="search" name="name" placeholder="Escriba nombre aquí..." required>
+                <input type="submit" value="Buscar">
+            </form>
+            <br>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+            <h2>Buscador de Personajes</h2>
+            {% for name in characters_list %}
+                <li><a href="/characters/{{ name }}">{{ name }}</a></li>
+            {% endfor %}
+        {% else %}
+            <h3>Error! La API no tiene información acerca de lo que pediste</h3>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+        {% endif %}
+    </body>
+</html>

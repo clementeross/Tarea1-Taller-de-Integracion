@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% if episodes_zip %}
+            <form align="right" action="/search" method="post">
+                {% csrf_token %}
+                <label>Buscador de Personajes:</label>
+                <input type="search" name="name" placeholder="Escriba nombre aquí..." required>
+                <input type="submit" value="Buscar">
+            </form>
+            <br>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+            <h2>Listado de los episodios de la temporada {{ season }} de la serie {{ series }}</h2>
+            <ol>
+                {% for title,id in episodes_zip %}
+                    <li><a href="/episodes/{{ id }}">{{ title }}</a></li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <h3>Error! La API no tiene información acerca de lo que pediste</h3>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+        {% endif %}
+    </body>
+</html>

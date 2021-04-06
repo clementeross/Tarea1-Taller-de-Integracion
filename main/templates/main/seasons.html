@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form align="right" action="/search" method="post">
+            {% csrf_token %}
+            <label>Buscador de Personajes:</label>
+            <input type="search" name="name" placeholder="Escriba nombre aquí..." required>
+            <input type="submit" value="Buscar">
+        </form>
+
+        <h2>Listado de temporadas de cada serie</h2>
+
+        <h4>Breaking Bad</h4>
+        <ul>
+            {% for n in seasons_bb_list %}
+                <li><a href="/Breaking Bad/{{ n }}">Temporada {{ n }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h4>Better Call Saul</h4>
+        <ul>
+            {% for n in seasons_bcs_list %}
+                <li><a href="/Better Call Saul/{{ n }}">Temporada {{ n }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

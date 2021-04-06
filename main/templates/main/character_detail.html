@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% if char_id %}
+            <form align="right" action="/search" method="post">
+                {% csrf_token %}
+                <label>Buscador de Personajes:</label>
+                <input type="search" name="name" placeholder="Escriba nombre aquí..." required>
+                <input type="submit" value="Buscar">
+            </form>
+            <br>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+            <h2>{{ name }}</h2>
+            <img src={{ img }}>
+            <ul>
+                <li>ID: {{ char_id }}</li>
+                <li>Nombre: {{ name }}</li>
+                <li>Ocupación:</li>
+                <ul>
+                    {% for elem in occupation %}
+                        <li>{{ elem }}</li>
+                    {% endfor %}
+                </ul>
+                <li>Estado: {{ status }}</li>
+                <li>Sobrenombre: {{ nickname }}</li>
+                <li>Series en las que aparece: {{ category }}</li>
+                {% if appearance %}
+                    <li>Apariciones en la serie Breaking Bad:</li>
+                    <ul>
+                    {% for n in appearance %}
+                        <li><a href="/Breaking Bad/{{ n }}">Temporada {{ n }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <li>Apariciones en la serie Breaking Bad: No tiene</li>
+                {% endif %}
+                <li>Interpretado por: {{ portrayed }}</li>
+                {% if better_call_saul_appearance %}
+                    <li>Apariciones en la serie Better Call Saul:</li>
+                    <ul>
+                    {% for n in better_call_saul_appearance %}
+                        <li><a href="/Better Call Saul/{{ n }}">Temporada {{ n }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <li>Apariciones en la serie Better Call Saul: No tiene</li>
+                {% endif %}
+                <li>Citas de este personaje:</li>
+                <ul>
+                    {% for quote in quotes%}
+                    <li>{{ quote }}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        {% else %}
+            <h3>Error! La API no tiene información acerca de lo que pediste</h3>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+        {% endif %}
+    </body>
+</html>

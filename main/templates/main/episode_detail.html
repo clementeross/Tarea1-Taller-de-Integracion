@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% if episode_id %}
+            <form align="right" action="/search" method="post">
+                {% csrf_token %}
+                <label>Buscador de Personajes:</label>
+                <input type="search" name="name" placeholder="Escriba nombre aquí..." required>
+                <input type="submit" value="Buscar">
+            </form>
+            <br>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+            <h2>{{ title }}</h2>
+            
+            <h4>Información relevante de este episodio</h4>
+
+            <ul>
+                <li>ID: {{ episode_id }}</li>
+                <li>Título: {{ title }}</li>
+                <li>Temporada: {{ season }}</li>
+                <li>Fecha de estreno: {{ air_date }}</li>
+                <li>Personajes:</li>
+                <ul>
+                    {% for name in characters %}
+                        <li><a href="/characters/{{ name }}">{{ name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <li>Número de episodio: {{ episode }}</li>
+                <li>Nombre de la serie: {{ series }}</li>
+            </ul>
+        {% else %}
+            <h3>Error! La API no tiene información acerca de lo que pediste</h3>
+            <form align="right" action="/">
+                <input type="submit" value="Volver a la Página Principal">
+            </form>
+        {% endif %}
+    </body>
+</html>
