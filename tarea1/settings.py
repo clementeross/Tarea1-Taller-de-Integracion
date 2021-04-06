@@ -1,3 +1,8 @@
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 """
 Django settings for tarea1 project.
 
@@ -20,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'a%s4rey7$^=*d7d3er00!3jee6=_!=q(i2y@%5e$#0q$hep1y0'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
