@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <body>
-        {% if episodes_zip %}
+        {% if error_message %}
+            <h3>{{ error_message }}</h3>
+        {% elif episodes_zip %}
             <form align="right" action="/search" method="post">
                 {% csrf_token %}
                 <label>Buscador de Personajes:</label>

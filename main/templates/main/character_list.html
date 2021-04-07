@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <body>
-        {% if characters_list %}
+        {% if error_message %}
+            <h3>{{ error_message }}</h3>
+        {% elif characters_list %}
             <form align="right" action="/search" method="post">
                 {% csrf_token %}
                 <label>Buscador de Personajes:</label>
