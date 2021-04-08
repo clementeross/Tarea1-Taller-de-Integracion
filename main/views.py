@@ -92,18 +92,13 @@ def character_detail(request, name):
 
 def character_list(request):
     name = request.POST.get('name', '')
-    if name:
-        characters_list = get_characters_by_search(params={'name': name})
-        if characters_list == '429 ERROR':
-            context = {
-                'error_message': 'Lo siento, la API ha superado el límite de consultas, pruebe de nuevo más tarde.'
-        }
-        else:
-            context = {
-                'characters_list': characters_list,
-            }
+    characters_list = get_characters_by_search(params={'name': name})
+    if characters_list == '429 ERROR':
+        context = {
+            'error_message': 'Lo siento, la API ha superado el límite de consultas, pruebe de nuevo más tarde.'
+    }
     else:
         context = {
-            'characters_list': None,
+            'characters_list': characters_list,
         }
     return render(request, 'main/character_list.html', context)
